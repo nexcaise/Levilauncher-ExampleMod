@@ -12,7 +12,7 @@ Repository Structure
 ├ .github/workflows
 │   └ build.yml
 ├ manifest.json
-├ default_mod_icon.png
+├ icon.png
 ├ src
 │   └ main.cpp
 ├ xmake.lua
@@ -23,7 +23,7 @@ Explanation
 Path| Description
 ".github/workflows/build.yml"| GitHub Actions workflow that builds the mod and packages it into ".llmod"
 "manifest.json"| Contains mod metadata
-"default_mod_icon.png"| Icon used for the mod
+"icon.png"| Icon used for the mod
 "src/"| C++ source code for the mod
 "xmake.lua"| xmake build configuration
 
@@ -33,7 +33,7 @@ Editing Mod Information
 
 Open:
 
-Repository/manifest.json
+manifest.json
 
 Example:
 
@@ -42,7 +42,7 @@ Example:
   "description": "Example LL mod",
   "version": "1.0.0",
   "author": "YourName",
-  "icon": "default_mod_icon.png"
+  "icon": "icon.png"
 }
 
 Field Explanation
@@ -60,11 +60,11 @@ Changing the Mod Icon
 
 Replace the file:
 
-Repository/default_mod_icon.png
+icon.png
 
 Requirements:
 
-- File name must remain default_mod_icon.png
+- File name must remain icon.png
 - Recommended size: 128×128 or 256×256
 - Format: PNG
 
