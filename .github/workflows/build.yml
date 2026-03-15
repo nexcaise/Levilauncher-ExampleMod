@@ -1,0 +1,56 @@
+name: Build LLMod
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y zip unzip
+
+      - name: Install xmake
+        uses: xmake-io/github-action-setup-xmake@v1
+
+      - name: Setup Android NDK
+        uses: nttld/setup-ndk@v1
+        with:
+          ndk-version: r27
+
+      - name: Configure & Build
+        run: |
+          xmake f -y -p android \
+            -a arm64-v8a \
+            --ndk=$ANDROID_NDK_HOME \
+            --ndk_sdkver=24 \
+            -m release
+          xmake -y -j$(nproc)
+
+      - name: Prepare llmod structure
+        run: |
+          mkdir -p package/libs
+          cp manifest.json package/manifest.json
+          cp icon.png package/icon.png
+
+          SO_FILE=$(find build -name "*.so" | head -n 1)
+          cp $SO_FILE package/libs/
+
+      - name: Create llmod
+        run: |
+          cd package
+          zip -r ../example_mod.llmod .
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: example_mod.llmod
+          path: example_mod.llmod
