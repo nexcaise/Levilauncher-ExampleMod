@@ -18,12 +18,12 @@ Repository Structure
 ├ xmake.lua
 └ README.md
 
-Explanation:
+Explanation
 
 Path| Description
 ".github/workflows/build.yml"| GitHub Actions workflow that builds the mod and packages it into ".llmod"
 "manifest.json"| Contains mod metadata
-"icon.png"| Icon used for the mod
+"default_mod_icon.png"| Icon used for the mod
 "src/"| C++ source code for the mod
 "xmake.lua"| xmake build configuration
 
@@ -33,7 +33,7 @@ Editing Mod Information
 
 Open:
 
-manifest.json
+Repository/manifest.json
 
 Example:
 
@@ -45,7 +45,7 @@ Example:
   "icon": "default_mod_icon.png"
 }
 
-Field explanation:
+Field Explanation
 
 Field| Description
 "name"| Name of the mod
@@ -60,11 +60,11 @@ Changing the Mod Icon
 
 Replace the file:
 
-Repository/icon.png
+Repository/default_mod_icon.png
 
 Requirements:
 
-- File name must remain icon.png
+- File name must remain default_mod_icon.png
 - Recommended size: 128×128 or 256×256
 - Format: PNG
 
@@ -89,8 +89,8 @@ Example code:
 
 PLCAPI static void LeviMod_Load(JavaVM* vm, Mod mod) {
     auto& logger = pl::log::Logger::getOrCreate("Example Mod");
-    logger.info("Mod {} Active", Mod.getFileName());
-};
+    logger.info("Mod {} Active", mod.getFileName());
+}
 
 ---
 
@@ -106,7 +106,7 @@ The workflow will:
 
 1. Install xmake
 2. Setup Android NDK
-3. Build the arm64-v8a .so library
+3. Build the arm64-v8a ".so" library
 4. Create a ".llmod" package
 5. Upload it as a GitHub Artifact
 
@@ -116,7 +116,7 @@ Downloading the Built Mod
 
 After the workflow finishes:
 
-1. Go to Actions tab
+1. Go to the Actions tab
 2. Open the latest workflow run
 3. Download the artifact
 4. Extract the ".llmod" file
@@ -151,4 +151,4 @@ curl -fsSL https://xmake.io/shget.text | bash
 
 License
 
-You are free to use this template for your own mods.# Levilauncher-ExampleMod
+You are free to use this template for your own mods.
