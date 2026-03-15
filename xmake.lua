@@ -6,7 +6,9 @@ set_languages("c99", "cxx23")
 add_rules("mode.release")
 
 add_repositories("xmake-repo https://github.com/xmake-io/xmake-repo.git")
-add_repositories("levimc-repo https://github.com/LiteLDev/xmake-repo.git")
+-- add_repositories("levimc-repo https://github.com/LiteLDev/xmake-repo.git")
+-- waiting for dreamguxiang to release the latest version on xmake-repo
+add_repositories("levimc-repo https://github.com/nexcaise/xmake-repo.git")
 
 add_requires("fmt")
 add_requires("preloader_android")
